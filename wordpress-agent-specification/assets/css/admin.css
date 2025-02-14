@@ -1,0 +1,161 @@
+/* Agentics Admin Styles */
+
+.agentics-admin-tabs {
+    margin-top: 20px;
+}
+
+.agentics-specs-list {
+    margin-top: 20px;
+}
+
+.spec-item {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.spec-item h3 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.spec-content {
+    margin: 15px 0;
+}
+
+.spec-editor {
+    width: 100%;
+    min-height: 200px;
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    tab-size: 4;
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.spec-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.spec-actions .button {
+    margin-left: 10px;
+}
+
+.agentics-preview table {
+    margin-top: 15px;
+}
+
+.agentics-preview code {
+    background: #f8f9fa;
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+.agentics-status table {
+    margin-top: 15px;
+}
+
+/* Tab Navigation */
+.nav-tab-wrapper {
+    margin-bottom: 20px;
+}
+
+.tab-content > .tab-pane {
+    display: none;
+}
+
+.tab-content > .active {
+    display: block;
+}
+
+/* JSON Editor Styling */
+.spec-editor.json-error {
+    border-color: #dc3232;
+    background-color: #fbeaea;
+}
+
+/* Status Indicators */
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-healthy {
+    background-color: #46b450;
+}
+
+.status-warning {
+    background-color: #ffb900;
+}
+
+.status-error {
+    background-color: #dc3232;
+}
+
+/* Settings Page */
+.agentics-settings-form {
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.form-table td {
+    padding: 15px 10px;
+}
+
+.form-table th {
+    padding: 15px 10px 15px 0;
+}
+
+/* Notifications */
+.agentics-notice {
+    padding: 10px 15px;
+    margin: 15px 0;
+    border-left: 4px solid #fff;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.agentics-notice-success {
+    border-left-color: #46b450;
+}
+
+.agentics-notice-error {
+    border-left-color: #dc3232;
+}
+
+/* Loading States */
+.agentics-loading {
+    position: relative;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.agentics-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: agentics-spin 1s linear infinite;
+}
+
+@keyframes agentics-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,157 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-02-13T19:19:28Z",
+  "deployment": {
+    "id": "express-example",
+    "url": "https://agentics.org",
+    "role": "primary",
+    "capabilities": ["neural", "temporal", "communications"],
+    "federation_endpoints": {
+      "websocket": "wss://agentics.org/federation",
+      "discovery": "https://agentics.org/.well-known/peers.json",
+      "health": "https://agentics.org/.well-known/health.json"
+    }
+  },
+  "trust": {
+    "certificate": {
+      "type": "x509",
+      "fingerprint": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "dns_sec": {
+      "enabled": true,
+      "domain": "agentics.org"
+    },
+    "web_of_trust": {
+      "enabled": true,
+      "signatures": []
+    }
+  },
+  "known_peers": [
+    {
+      "id": "research-lab",
+      "url": "https://research.example.com",
+      "role": "peer",
+      "capabilities": ["neural", "research"],
+      "trust_status": "verified",
+      "federation_endpoints": {
+        "websocket": "wss://research.example.com/federation",
+        "discovery": "https://research.example.com/.well-known/peers.json"
+      },
+      "metrics": {
+        "latency": "50ms",
+        "reliability": 0.999,
+        "last_sync": "2025-02-13T19:18:00Z"
+      }
+    },
+    {
+      "id": "compute-cluster",
+      "url": "https://compute.example.org",
+      "role": "compute",
+      "capabilities": ["neural", "compute"],
+      "trust_status": "verified",
+      "federation_endpoints": {
+        "websocket": "wss://compute.example.org/federation",
+        "discovery": "https://compute.example.org/.well-known/peers.json"
+      },
+      "metrics": {
+        "latency": "25ms",
+        "reliability": 0.999,
+        "last_sync": "2025-02-13T19:19:00Z"
+      }
+    }
+  ],
+  "federation_policies": {
+    "auto_discovery": {
+      "enabled": true,
+      "max_depth": 3,
+      "refresh_interval": 3600,
+      "trust_requirements": {
+        "minimum_methods": 2,
+        "required_methods": ["dns-sec", "web-of-trust", "certificate"]
+      }
+    },
+    "capability_sharing": {
+      "enabled": true,
+      "negotiation": {
+        "automatic": true,
+        "requires_approval": ["neural", "temporal"]
+      },
+      "delegation": {
+        "enabled": true,
+        "max_depth": 3
+      }
+    },
+    "resource_sharing": {
+      "enabled": true,
+      "quotas": {
+        "compute": {
+          "max_concurrent": 100,
+          "rate_limit": "1000/hour"
+        },
+        "storage": {
+          "max_size": "1GB",
+          "retention": "30d"
+        }
+      },
+      "load_balancing": {
+        "enabled": true,
+        "strategy": "least_loaded"
+      }
+    }
+  },
+  "agent_policies": {
+    "migration": {
+      "enabled": true,
+      "requires_approval": true,
+      "state_transfer": {
+        "enabled": true,
+        "encryption": "required"
+      }
+    },
+    "communication": {
+      "direct": true,
+      "bridged": true,
+      "encryption": "required",
+      "protocols": ["websocket", "grpc"]
+    },
+    "task_delegation": {
+      "enabled": true,
+      "scope": ["neural", "compute", "analysis"],
+      "requires_approval": false,
+      "priority_levels": ["low", "medium", "high"]
+    }
+  },
+  "metrics": {
+    "network": {
+      "latency": {
+        "average": "50ms",
+        "p95": "100ms",
+        "p99": "200ms"
+      },
+      "bandwidth": {
+        "inbound": "100Mbps",
+        "outbound": "100Mbps",
+        "utilization": 0.45
+      },
+      "reliability": {
+        "uptime": "99.99%",
+        "error_rate": 0.0001
+      }
+    },
+    "federation": {
+      "connected_peers": 2,
+      "active_sessions": 15,
+      "resource_usage": {
+        "compute": 0.65,
+        "storage": 0.30,
+        "network": 0.45
+      }
+    }
+  },
+  "status": {
+    "health": "healthy",
+    "last_update": "2025-02-13T19:19:28Z",
+    "active_federations": 2,
+    "pending_requests": 0
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "version": "1.0.0",
+  "description": "Core interaction specifications for Agentics Express example",
+  "interaction_protocols": {
+    "authentication": {
+      "required": true,
+      "methods": ["jwt"],
+      "token_endpoint": "/auth",
+      "token_format": {
+        "type": "Bearer",
+        "expiration": "1h",
+        "refresh": false
+      }
+    },
+    "communication": {
+      "rest": {
+        "enabled": true,
+        "base_url": "/api",
+        "version": "1.0",
+        "content_types": [
+          "application/json",
+          "text/plain",
+          "text/markdown"
+        ]
+      },
+      "websocket": {
+        "enabled": true,
+        "url": "ws://localhost:3000/realtime",
+        "protocols": ["bearer"],
+        "message_format": "json"
+      },
+      "sse": {
+        "enabled": true,
+        "endpoints": [
+          "/api/events",
+          "/api/stream"
+        ]
+      }
+    }
+  },
+  "capabilities": {
+    "neural_processing": {
+      "enabled": true,
+      "models": ["gpt-4o-mini", "llama-3", "claude-3"],
+      "endpoints": {
+        "inference": "/api/brain/inference",
+        "training": "/api/brain/train"
+      },
+      "rate_limits": {
+        "requests_per_hour": 100,
+        "concurrent": 2
+      }
+    },
+    "temporal_analysis": {
+      "enabled": true,
+      "features": [
+        "prediction",
+        "anomaly_detection",
+        "pattern_recognition"
+      ],
+      "endpoints": {
+        "predict": "/api/temporal/predict",
+        "analyze": "/api/temporal/analyze"
+      },
+      "rate_limits": {
+        "requests_per_hour": 200,
+        "concurrent": 5
+      }
+    },
+    "communications": {
+      "enabled": true,
+      "channels": [
+        "chat",
+        "notifications",
+        "presence"
+      ],
+      "endpoints": {
+        "messages": "/api/chat/messages",
+        "presence": "/api/chat/presence"
+      },
+      "rate_limits": {
+        "messages_per_minute": 60,
+        "concurrent_connections": 10
+      }
+    }
+  },
+  "command_control": {
+    "structures": [
+      {
+        "type": "hierarchical",
+        "enabled": true,
+        "roles": ["primary", "secondary", "agent"],
+        "delegation": true
+      },
+      {
+        "type": "mesh",
+        "enabled": true,
+        "consensus": {
+          "algorithm": "raft",
+          "timeout": "5s"
+        }
+      },
+      {
+        "type": "autonomous",
+        "enabled": true,
+        "constraints": {
+          "resource_limits": true,
+          "goal_alignment": true
+        }
+      }
+    ],
+    "coordination": {
+      "task_delegation": true,
+      "resource_sharing": true,
+      "state_synchronization": true
+    }
+  },
+  "resource_management": {
+    "compute": {
+      "quota": {
+        "max_concurrent": 100,
+        "requests_per_hour": 1000
+      },
+      "priority_levels": ["low", "medium", "high"],
+      "auto_scaling": true
+    },
+    "storage": {
+      "quota": {
+        "max_size": "1GB",
+        "retention": "30d"
+      },
+      "types": ["temporary", "persistent"]
+    },
+    "network": {
+      "bandwidth": {
+        "limit": "100Mbps",
+        "burst": "1Gbps"
+      },
+      "connections": {
+        "max_concurrent": 1000,
+        "timeout": "60s"
+      }
+    }
+  },
+  "security": {
+    "authentication": {
+      "token_validation": {
+        "required": true,
+        "algorithms": ["ES256", "RS256"]
+      },
+      "scope_validation": true,
+      "rate_limiting": true
+    },
+    "authorization": {
+      "rbac": true,
+      "capability_based": true,
+      "delegation": {
+        "enabled": true,
+        "max_depth": 3
+      }
+    },
+    "encryption": {
+      "transport": "TLS_1.3",
+      "data_at_rest": "AES-256-GCM",
+      "key_rotation": "24h"
+    }
+  },
+  "monitoring": {
+    "metrics": [
+      "request_rate",
+      "error_rate",
+      "latency",
+      "resource_usage"
+    ],
+    "health_check": {
+      "endpoint": "/health",
+      "interval": "60s"
+    },
+    "logging": {
+      "levels": ["error", "warn", "info", "debug"],
+      "retention": "30d"
+    }
+  }
+}

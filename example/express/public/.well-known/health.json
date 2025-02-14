@@ -1,0 +1,108 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2025-02-14T00:33:17Z",
+  "status": "healthy",
+  "deployment": {
+    "id": "express-example",
+    "uptime": "99.99%",
+    "last_federation_sync": "2025-02-14T00:33:00Z"
+  },
+  "capabilities": {
+    "neural": {
+      "status": "available",
+      "load": 0.45,
+      "models": ["gpt-4o-mini", "llama-3", "claude-3"],
+      "queue_length": 0,
+      "metrics": {
+        "requests_per_minute": 42,
+        "average_latency": "150ms",
+        "error_rate": 0.001
+      }
+    },
+    "temporal": {
+      "status": "available",
+      "active_predictions": 12,
+      "accuracy": 0.95,
+      "metrics": {
+        "predictions_per_hour": 120,
+        "average_accuracy": 0.95,
+        "anomalies_detected": 3
+      }
+    },
+    "communications": {
+      "status": "available",
+      "active_channels": 8,
+      "connected_agents": 25,
+      "metrics": {
+        "messages_per_minute": 150,
+        "active_sessions": 25,
+        "latency": "50ms"
+      }
+    }
+  },
+  "resources": {
+    "compute": {
+      "status": "healthy",
+      "utilization": 0.65,
+      "quota_remaining": {
+        "requests": 850,
+        "concurrent": 75
+      },
+      "metrics": {
+        "cpu_usage": 0.65,
+        "memory_usage": 0.45,
+        "disk_iops": 1200
+      }
+    },
+    "storage": {
+      "status": "healthy",
+      "utilization": 0.30,
+      "quota_remaining": {
+        "bytes": 700000000
+      },
+      "metrics": {
+        "read_latency": "5ms",
+        "write_latency": "10ms",
+        "iops": 1000
+      }
+    },
+    "network": {
+      "status": "healthy",
+      "connections": 125,
+      "bandwidth_usage": 0.35,
+      "metrics": {
+        "throughput": "50Mbps",
+        "latency": "25ms",
+        "error_rate": 0.0001
+      }
+    }
+  },
+  "security": {
+    "status": "healthy",
+    "certificate_valid": true,
+    "last_key_rotation": "2025-02-14T00:00:00Z",
+    "next_key_rotation": "2025-02-15T00:00:00Z",
+    "metrics": {
+      "auth_success_rate": 0.999,
+      "token_validations_per_second": 100,
+      "suspicious_activities": 0
+    }
+  },
+  "alerts": {
+    "active": 0,
+    "warning": 0,
+    "info": 2,
+    "recent": [
+      {
+        "level": "info",
+        "message": "Automatic key rotation completed",
+        "timestamp": "2025-02-14T00:00:00Z"
+      },
+      {
+        "level": "info",
+        "message": "Federation sync completed",
+        "timestamp": "2025-02-14T00:33:00Z"
+      }
+    ]
+  }
+}

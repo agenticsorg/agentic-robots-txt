@@ -1,0 +1,267 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "Agentics WebSocket API",
+    "version": "1.0.0",
+    "description": "Real-time communication API for Agentics Agent Guidance System",
+    "contact": {
+      "name": "Agentics Support",
+      "url": "https://agentics.org/support",
+      "email": "support@agentics.org"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": {
+    "production": {
+      "url": "wss://agentics.org/realtime",
+      "protocol": "wss",
+      "description": "Production WebSocket server",
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ]
+    }
+  },
+  "channels": {
+    "neural_interface": {
+      "description": "Neural processing channel",
+      "subscribe": {
+        "summary": "Receive neural processing updates",
+        "message": {
+          "$ref": "#/components/messages/NeuralUpdate"
+        }
+      },
+      "publish": {
+        "summary": "Send neural processing commands",
+        "message": {
+          "$ref": "#/components/messages/NeuralCommand"
+        }
+      }
+    },
+    "temporal_analysis": {
+      "description": "Temporal analysis channel",
+      "subscribe": {
+        "summary": "Receive temporal analysis updates",
+        "message": {
+          "$ref": "#/components/messages/TemporalUpdate"
+        }
+      },
+      "publish": {
+        "summary": "Send temporal analysis commands",
+        "message": {
+          "$ref": "#/components/messages/TemporalCommand"
+        }
+      }
+    },
+    "communications": {
+      "description": "Real-time communication channel",
+      "subscribe": {
+        "summary": "Receive messages and presence updates",
+        "message": {
+          "$ref": "#/components/messages/CommunicationUpdate"
+        }
+      },
+      "publish": {
+        "summary": "Send messages and presence updates",
+        "message": {
+          "$ref": "#/components/messages/CommunicationCommand"
+        }
+      }
+    },
+    "system": {
+      "description": "System events channel",
+      "subscribe": {
+        "summary": "Receive system events",
+        "message": {
+          "$ref": "#/components/messages/SystemEvent"
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "messages": {
+      "NeuralUpdate": {
+        "payload": {
+          "type": "object",
+          "required": ["type", "data"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["inference_complete", "training_update", "error"]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "model": {
+                  "type": "string"
+                },
+                "result": {
+                  "type": "string"
+                },
+                "metrics": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NeuralCommand": {
+        "payload": {
+          "type": "object",
+          "required": ["type", "data"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["start_inference", "start_training", "cancel"]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "model": {
+                  "type": "string"
+                },
+                "input": {
+                  "type": "string"
+                },
+                "parameters": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "TemporalUpdate": {
+        "payload": {
+          "type": "object",
+          "required": ["type", "data"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["prediction_complete", "anomaly_detected", "pattern_found"]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "result": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "TemporalCommand": {
+        "payload": {
+          "type": "object",
+          "required": ["type", "data"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["start_prediction", "detect_anomalies", "find_patterns"]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "timeframe": {
+                  "type": "string"
+                },
+                "parameters": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CommunicationUpdate": {
+        "payload": {
+          "type": "object",
+          "required": ["type", "data"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["message", "presence_update", "typing"]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "channel": {
+                  "type": "string"
+                },
+                "sender": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "CommunicationCommand": {
+        "payload": {
+          "type": "object",
+          "required": ["type", "data"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["send_message", "update_presence", "start_typing"]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "channel": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "SystemEvent": {
+        "payload": {
+          "type": "object",
+          "required": ["type", "data"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["version_update", "spec_change", "health_alert"]
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "details": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

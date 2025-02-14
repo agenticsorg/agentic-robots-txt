@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic_Robots.txt Specification</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .tabs {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 16px;
+            color: #6b7280;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+        .tab.active {
+            color: #2563eb;
+            border-bottom: 2px solid #2563eb;
+            font-weight: 500;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .output {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #1d4ed8;
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+        }
+        .error {
+            color: #dc2626;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .success {
+            color: #059669;
+        }
+        h1 {
+            color: #1f2937;
+            margin-bottom: 1em;
+        }
+        h2 {
+            color: #374151;
+            margin: 1.5em 0 1em;
+        }
+        h3 {
+            color: #4b5563;
+            margin: 1.2em 0 0.8em;
+        }
+        code {
+            background: #f3f4f6;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        pre {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+        .doc-section {
+            margin-bottom: 2em;
+        }
+        .example {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .note {
+            background: #fef3c7;
+            border: 1px solid #fcd34d;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+        .subtabs {
+            display: flex;
+            gap: 1px;
+            margin: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .subtab {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 14px;
+            color: #6b7280;
+            border-bottom: 1px solid transparent;
+            margin-bottom: -1px;
+        }
+        .subtab.active {
+            color: #2563eb;
+            border-bottom: 1px solid #2563eb;
+            font-weight: 500;
+        }
+        .subtab-content {
+            display: none;
+            padding: 15px;
+        }
+        .subtab-content.active { display: block; }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agentic_Robots.txt Specification</h1>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('overview')">Overview</button>
+        <button class="tab" onclick="showTab('protocol')">Protocol Details</button>
+        <button class="tab" onclick="showTab('testing')">Testing Interface</button>
+    </div>
+
+    <div id="overview" class="tab-content active">
+        <div class="doc-section">
+            <h2>Introduction</h2>
+            <p>The Agentic_Robots.txt specification extends the traditional robots.txt protocol to enable sophisticated interaction between autonomous agents and web applications. While robots.txt has historically focused on crawling permissions, this specification provides a comprehensive framework for programmatic discovery and interaction.</p>
+            
+            <div class="note">
+                <strong>Key Innovation:</strong> Provides a standardized framework for agent-application interaction beyond simple crawling permissions.
+            </div>
+
+            <h3>Key Features</h3>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h4>Capability Discovery</h4>
+                    <ul>
+                        <li>Standardized discovery mechanism</li>
+                        <li>Self-documenting capabilities</li>
+                        <li>Hierarchical structure</li>
+                        <li>Version management</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Interaction Protocols</h4>
+                    <ul>
+                        <li>HTTP/REST endpoints</li>
+                        <li>WebSocket communication</li>
+                        <li>Event-based updates</li>
+                        <li>Standardized patterns</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Federation</h4>
+                    <ul>
+                        <li>Cross-deployment coordination</li>
+                        <li>Resource sharing</li>
+                        <li>Peer discovery</li>
+                        <li>Trust verification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Protocol Requirements</h3>
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h4>Mandatory Features</h4>
+                    <ul>
+                        <li>robots.txt extensions</li>
+                        <li>.well-known directory</li>
+                        <li>JSON schema validation</li>
+                        <li>HTTP/2 support</li>
+                        <li>WebSocket support</li>
+                        <li>JWT authentication</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>Optional Features</h4>
+                    <ul>
+                        <li>Federation support</li>
+                        <li>Custom capabilities</li>
+                        <li>Advanced monitoring</li>
+                        <li>Version control</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Versioning</h3>
+            <div class="example">
+                <p>The specification follows semantic versioning:</p>
+                <ul>
+                    <li><strong>MAJOR:</strong> Breaking changes</li>
+                    <li><strong>MINOR:</strong> New features</li>
+                    <li><strong>PATCH:</strong> Bug fixes</li>
+                </ul>
+                <p>Current version: 1.0.0</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="protocol" class="tab-content">
+        <div class="subtabs">
+            <button class="subtab active" onclick="showSubTab('protocol-intro')">Introduction</button>
+            <button class="subtab" onclick="showSubTab('protocol-files')">Required Files</button>
+            <button class="subtab" onclick="showSubTab('protocol-auth')">Authentication</button>
+            <button class="subtab" onclick="showSubTab('protocol-comms')">Communication</button>
+        </div>
+
+        <div id="protocol-intro" class="subtab-content active">
+            <h3>Protocol Overview</h3>
+            <p>The protocol defines a hierarchical discovery mechanism that enables agents to explore and interact with application capabilities:</p>
+
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h4>Discovery Chain</h4>
+                    <p>A hierarchical discovery mechanism that allows agents to:</p>
+                    <ul>
+                        <li>Discover application capabilities</li>
+                        <li>Validate requirements</li>
+                        <li>Establish trust</li>
+                        <li>Monitor status</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>Standardized Interfaces</h4>
+                    <p>Common interfaces for:</p>
+                    <ul>
+                        <li>REST APIs</li>
+                        <li>WebSocket streams</li>
+                        <li>Event channels</li>
+                        <li>Federation protocols</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <h4>Security Model</h4>
+                    <p>Comprehensive security features:</p>
+                    <ul>
+                        <li>Token-based auth</li>
+                        <li>Role-based access</li>
+                        <li>Rate controls</li>
+                        <li>Trust chains</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="protocol-files" class="subtab-content">
+            <h3>Required Protocol Files</h3>
+            
+            <div class="doc-section">
+                <h4>1. robots.txt</h4>
+                <p>Entry point that advertises Agentics support and capabilities:</p>
+                <pre>
+User-agent: *
+Allow: /
+Disallow: /private/
+
+# Agentics Extensions
+Agentics-Manifest: /.well-known/agentics-manifest.json
+Agentics-Version: 1.0.0 
+Agentics-Capabilities: neural,temporal,communications
+Agentics-Federation: enabled
+Agentics-Trust-Methods: dns-sec,certificate
+
+# Additional Metadata
+Agentics-Description: Application capabilities and interfaces
+Agentics-Documentation: /.well-known/agent-guide.md</pre>
+                <p><strong>Purpose:</strong> Provides backward compatibility with traditional crawlers while enabling Agentics discovery.</p>
+            </div>
+
+            <div class="doc-section">
+                <h4>2. agentics-manifest.json</h4>
+                <p>Core capabilities declaration:</p>
+                <pre>
+{
+  "version": "1.0.0",
+  "deployment": {
+    "id": "unique-identifier",
+    "role": "primary|secondary",
+    "environment": "production|staging"
+  },
+  "capabilities": {
+    "neural": {
+      "enabled": true,
+      "models": ["model-list"],
+      "operations": ["supported-ops"]
+    },
+    "temporal": {
+      "enabled": true,
+      "features": ["feature-list"]
+    }
+  },
+  "federation": {
+    "enabled": true,
+    "discovery": {
+      "method": "dns-sd",
+      "domain": "domain-name"
+    }
+  }
+}</pre>
+                <p><strong>Purpose:</strong> Defines available services and their configurations.</p>
+            </div>
+
+            <div class="doc-section">
+                <h4>3. health.json</h4>
+                <p>System health and status information:</p>
+                <pre>
+{
+  "status": "healthy|degraded|down",
+  "timestamp": "ISO-8601",
+  "services": {
+    "neural": {
+      "status": "available|unavailable",
+      "load": 0.45,
+      "metrics": {
+        "requests_per_minute": 60,
+        "success_rate": 0.99
+      }
+    }
+  }
+}</pre>
+            </div>
+
+            <div class="doc-section">
+                <h4>4. peers.json</h4>
+                <p>Federation network configuration:</p>
+                <pre>
+{
+  "network": {
+    "name": "network-name",
+    "discovery": {
+      "method": "dns-sd",
+      "domain": "domain-name"
+    }
+  },
+  "peers": [
+    {
+      "id": "peer-id",
+      "role": "role-type",
+      "capabilities": {
+        "shared": ["capability-list"]
+      }
+    }
+  ]
+}</pre>
+            </div>
+
+            <div class="note">
+                <strong>File Requirements:</strong>
+                <ul>
+                    <li>All files must be valid JSON</li>
+                    <li>Files must be served with correct MIME types</li>
+                    <li>Files must be accessible via HTTPS</li>
+                    <li>Files should implement proper caching headers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="protocol-auth" class="subtab-content">
+            <h3>Authentication Protocol</h3>
+            
+            <div class="doc-section">
+                <h4>1. Token Request</h4>
+                <p>Obtain authentication token:</p>
+                <pre>
+POST /auth
+Content-Type: application/json
+
+{
+  "client_id": "agent_id",
+  "client_secret": "agent_secret",
+  "scope": ["neural", "temporal"],
+  "grant_type": "client_credentials",
+  "agent_type": "autonomous"
+}</pre>
+                <p><strong>Response:</strong></p>
+                <pre>
+{
+  "token": "eyJhbGciOiJIUzI1...",
+  "expires_in": 3600
+}</pre>
+            </div>
+
+            <div class="doc-section">
+                <h4>2. Token Usage</h4>
+                <p>Use token in requests:</p>
+                <pre>
+# HTTP Requests
+Authorization: Bearer {token}
+
+# WebSocket Connection
+ws = new WebSocket(url, [token])
+
+# SSE Connection
+headers: { Authorization: `Bearer ${token}` }</pre>
+            </div>
+
+            <div class="doc-section">
+                <h4>3. Security Requirements</h4>
+                <div class="note">
+                    <ul>
+                        <li>All tokens must be JWT format</li>
+                        <li>Tokens must include scopes</li>
+                        <li>HTTPS required for all auth endpoints</li>
+                        <li>Rate limiting must be implemented</li>
+                        <li>Token refresh mechanism required</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="protocol-comms" class="subtab-content">
+            <h3>Communication Protocols</h3>
+
+            <div class="doc-section">
+                <h4>Protocol Overview</h4>
+                <p>The specification supports multiple communication patterns:</p>
+                <ul>
+                    <li><strong>Request-Response:</strong> Standard HTTP/REST for discrete operations</li>
+                    <li><strong>Real-time:</strong> WebSocket for bidirectional communication</li>
+                    <li><strong>Events:</strong> Server-Sent Events for one-way updates</li>
+                </ul>
+                <h4>1. HTTP/REST</h4>
+                <p>Standard request-response pattern:</p>
+                <pre>
+# Neural Processing
+POST /api/brain/inference
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "model": "gpt-4o-mini",
+  "input": "text",
+  "options": {
+    "temperature": 0.7,
+    "max_tokens": 100
+  }
+}</pre>
+            </div>
+
+            <div class="doc-section">
+                <p>WebSocket connections enable real-time bidirectional communication for:</p>
+                <ul>
+                    <li>Model inference updates</li>
+                    <li>System status changes</li>
+                    <li>Federation events</li>
+                    <li>Resource updates</li>
+                </ul>
+                <h4>2. WebSocket</h4>
+                <p>Real-time bidirectional communication:</p>
+                <pre>
+# Connect
+ws = new WebSocket('ws://host/realtime', [token])
+
+# Subscribe
+{
+  "type": "subscribe",
+  "channel": "neural_interface",
+  "options": {
+    "events": ["inference", "error", "status"],
+    "batch_size": 10
+  }
+}
+
+# Receive Updates
+{
+  "type": "update",
+  "channel": "neural_interface",
+  "timestamp": "2024-02-14T04:27:00Z",
+  "data": {
+    "event": "inference_complete",
+    "details": {
+      "model": "gpt-4o-mini",
+      "latency": "150ms",
+      "tokens": 128
+    }
+  }
+}</pre>
+            </div>
+
+            <div class="doc-section">
+                <h4>3. Protocol Requirements</h4>
+                <div class="note">
+                    <ul>
+                        <li>All endpoints must support HTTP/2</li>
+                        <li>WebSocket connections must use WSS</li>
+                        <li>Proper error handling required</li>
+                        <li>Automatic reconnection support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="testing" class="tab-content">
+        <div class="section">
+            <h2>1. Authentication</h2>
+            <p>Start by obtaining a JWT token using the test credentials:</p>
+            <input type="text" id="clientId" value="test" placeholder="Client ID">
+            <input type="text" id="clientSecret" value="test" placeholder="Client Secret">
+            <button onclick="authenticate()">Get Token</button>
+            <div id="authOutput" class="output"></div>
+        </div>
+
+        <div class="section">
+            <h2>2. Specification Files</h2>
+            <p>Explore the available specifications to understand system capabilities:</p>
+            <button onclick="getSpec('manifest')">Manifest</button>
+            <button onclick="getSpec('guidance')">Guidance</button>
+            <button onclick="getSpec('health')">Health</button>
+            <button onclick="getSpec('models')">Models</button>
+            <div id="specOutput" class="output"></div>
+        </div>
+
+        <div class="section">
+            <h2>3. Neural Interface</h2>
+            <p>Test the neural processing capabilities with different inputs:</p>
+            <div class="example">
+                Example prompts:
+                <ul>
+                    <li>"Analyze the sentiment of: 'Great product!'"</li>
+                    <li>"Summarize: 'The quick brown fox jumps over the lazy dog.'"</li>
+                    <li>"Classify: 'Breaking news: New AI breakthrough'"</li>
+                </ul>
+            </div>
+            <textarea id="neuralInput" placeholder="Enter text for inference">Hello, how can you help me?</textarea>
+            <button onclick="runInference()" id="inferenceButton">Run Inference</button>
+            <div id="neuralOutput" class="output"></div>
+        </div>
+
+        <div class="section">
+            <h2>4. WebSocket Connection</h2>
+            <p>Establish real-time communication and receive updates:</p>
+            <div class="example">
+                <p>Channel types:</p>
+                <ul>
+                    <li><strong>neural_interface</strong>: Model inference updates</li>
+                    <li><strong>temporal_analysis</strong>: Time-series predictions</li>
+                </ul>
+            </div>
+            <button onclick="connectWebSocket()" id="connectButton">Connect</button>
+            <button onclick="disconnectWebSocket()" id="disconnectButton" disabled>Disconnect</button>
+            <button onclick="subscribe('neural_interface')" id="subNeuralButton" disabled>Subscribe Neural</button>
+            <button onclick="subscribe('temporal_analysis')" id="subTemporalButton" disabled>Subscribe Temporal</button>
+            <div id="wsOutput" class="output"></div>
+        </div>
+    </div>
+
+    <script>
+        let token = '';
+        let ws = null;
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.textContent.toLowerCase().includes(tabId)) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+
+        function showSubTab(tabId) {
+            const parent = document.querySelector('.subtab-content.active')?.parentElement;
+            if (parent) {
+                parent.querySelectorAll('.subtab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tabId).classList.add('active');
+                
+                parent.querySelectorAll('.subtab').forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.textContent.toLowerCase().includes(tabId.split('-')[0])) {
+                        tab.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        function updateButtons() {
+            const hasToken = !!token;
+            const hasWs = !!ws;
+            
+            document.getElementById('inferenceButton').disabled = !hasToken;
+            document.getElementById('connectButton').disabled = !hasToken || hasWs;
+            document.getElementById('disconnectButton').disabled = !hasWs;
+            document.getElementById('subNeuralButton').disabled = !hasWs;
+            document.getElementById('subTemporalButton').disabled = !hasWs;
+        }
+
+        async function authenticate() {
+            const output = document.getElementById('authOutput');
+            try {
+                const response = await fetch('/auth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        client_id: document.getElementById('clientId').value,
+                        client_secret: document.getElementById('clientSecret').value
+                    })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    token = data.token;
+                    output.innerHTML = '<span class="success">✓ Token received:</span> ' + token;
+                    updateButtons();
+                } else {
+                    throw new Error(data.error || 'Authentication failed');
+                }
+            } catch (err) {
+                output.innerHTML = '<span class="error">✗ Error:</span> ' + err.message;
+                token = '';
+                updateButtons();
+            }
+        }
+
+        async function getSpec(type) {
+            const output = document.getElementById('specOutput');
+            try {
+                const specMap = {
+                    'manifest': 'agentics-manifest.json',
+                    'guidance': 'agentic-guidance.json',
+                    'health': 'health.json',
+                    'models': 'models.json'
+                };
+                
+                const response = await fetch(`/.well-known/${specMap[type]}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const contentType = response.headers.get('content-type');
+                let data;
+                if (contentType && contentType.includes('application/json')) {
+                    data = await response.json();
+                    output.textContent = JSON.stringify(data, null, 2);
+                } else {
+                    const text = await response.text();
+                    output.textContent = text;
+                }
+            } catch (err) {
+                output.innerHTML = '<span class="error">✗ Error:</span> ' + err.message;
+            }
+        }
+
+        async function runInference() {
+            const output = document.getElementById('neuralOutput');
+            if (!token) {
+                output.innerHTML = '<span class="error">✗ Please authenticate first</span>';
+                return;
+            }
+            try {
+                const response = await fetch('/api/brain/inference', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-4o-mini',
+                        input: document.getElementById('neuralInput').value
+                    })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    output.textContent = JSON.stringify(data, null, 2);
+                } else {
+                    throw new Error(data.error || 'Inference failed');
+                }
+            } catch (err) {
+                output.innerHTML = '<span class="error">✗ Error:</span> ' + err.message;
+            }
+        }
+
+        function appendToOutput(message, isError = false) {
+            const output = document.getElementById('wsOutput');
+            const timestamp = new Date().toLocaleTimeString();
+            const className = isError ? 'error' : '';
+            const prefix = isError ? '✗' : '✓';
+            output.innerHTML += `<div class="${className}">[${timestamp}] ${prefix} ${message}</div>`;
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function connectWebSocket() {
+            if (!token) {
+                appendToOutput('Please authenticate first', true);
+                return;
+            }
+            
+            try {
+                // Pass token as a subprotocol
+                ws = new WebSocket('ws://localhost:3000/realtime', [token]);
+                
+                ws.onopen = () => {
+                    appendToOutput('Connected to WebSocket');
+                    updateButtons();
+                };
+                
+                ws.onmessage = (event) => {
+                    const data = JSON.parse(event.data);
+                    if (data.type === 'error') {
+                        appendToOutput(data.message, true);
+                    } else {
+                        appendToOutput('Received: ' + JSON.stringify(data, null, 2));
+                    }
+                };
+                
+                ws.onclose = () => {
+                    appendToOutput('Disconnected from WebSocket');
+                    ws = null;
+                    updateButtons();
+                };
+                
+                ws.onerror = (error) => {
+                    appendToOutput('WebSocket error: ' + (error.message || 'Unknown error'), true);
+                    ws = null;
+                    updateButtons();
+                };
+            } catch (err) {
+                appendToOutput('Failed to connect: ' + err.message, true);
+                ws = null;
+                updateButtons();
+            }
+        }
+
+        function disconnectWebSocket() {
+            if (ws) {
+                ws.close();
+                ws = null;
+                updateButtons();
+            }
+        }
+
+        function subscribe(channel) {
+            if (!ws) {
+                appendToOutput('Please connect WebSocket first', true);
+                return;
+            }
+            ws.send(JSON.stringify({
+                type: 'subscribe',
+                channel: channel
+            }));
+        }
+
+        // Initialize button states
+        updateButtons();
+    </script>
+</body>
+</html>

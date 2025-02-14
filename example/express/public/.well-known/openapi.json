@@ -1,0 +1,329 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agentics API",
+    "version": "1.0.0",
+    "description": "REST API for Agentics Agent Guidance System",
+    "contact": {
+      "name": "Agentics Support",
+      "url": "https://agentics.org/support",
+      "email": "support@agentics.org"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://agentics.org/api",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/auth": {
+      "post": {
+        "summary": "Authenticate and get JWT token",
+        "security": [],
+        "tags": ["Authentication"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authentication successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/brain/inference": {
+      "post": {
+        "summary": "Perform neural inference",
+        "tags": ["Neural"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InferenceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inference successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InferenceResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/temporal/predict": {
+      "post": {
+        "summary": "Make temporal predictions",
+        "tags": ["Temporal"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Prediction successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/messages": {
+      "post": {
+        "summary": "Send chat message",
+        "tags": ["Communications"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Message sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Get system health status",
+        "tags": ["System"],
+        "responses": {
+          "200": {
+            "description": "Health status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "AuthRequest": {
+        "type": "object",
+        "required": ["client_id", "client_secret"],
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "description": "Client identifier"
+          },
+          "client_secret": {
+            "type": "string",
+            "description": "Client secret"
+          }
+        }
+      },
+      "AuthResponse": {
+        "type": "object",
+        "required": ["token"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "JWT token"
+          }
+        }
+      },
+      "InferenceRequest": {
+        "type": "object",
+        "required": ["model", "input"],
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Model identifier"
+          },
+          "input": {
+            "type": "string",
+            "description": "Input text"
+          }
+        }
+      },
+      "InferenceResponse": {
+        "type": "object",
+        "required": ["output"],
+        "properties": {
+          "output": {
+            "type": "string",
+            "description": "Generated output"
+          }
+        }
+      },
+      "PredictionRequest": {
+        "type": "object",
+        "required": ["data", "horizon"],
+        "properties": {
+          "data": {
+            "type": "string",
+            "description": "Time series data"
+          },
+          "horizon": {
+            "type": "string",
+            "description": "Prediction horizon"
+          }
+        }
+      },
+      "PredictionResponse": {
+        "type": "object",
+        "required": ["predictions"],
+        "properties": {
+          "predictions": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Predicted values"
+          }
+        }
+      },
+      "MessageRequest": {
+        "type": "object",
+        "required": ["message", "channel"],
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message content"
+          },
+          "channel": {
+            "type": "string",
+            "description": "Target channel"
+          }
+        }
+      },
+      "MessageResponse": {
+        "type": "object",
+        "required": ["id", "timestamp"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Message identifier"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Message timestamp"
+          }
+        }
+      },
+      "HealthStatus": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["healthy", "degraded", "unhealthy"],
+            "description": "System health status"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Authentication endpoints"
+    },
+    {
+      "name": "Neural",
+      "description": "Neural processing endpoints"
+    },
+    {
+      "name": "Temporal",
+      "description": "Temporal analysis endpoints"
+    },
+    {
+      "name": "Communications",
+      "description": "Communication endpoints"
+    },
+    {
+      "name": "System",
+      "description": "System management endpoints"
+    }
+  ]
+}

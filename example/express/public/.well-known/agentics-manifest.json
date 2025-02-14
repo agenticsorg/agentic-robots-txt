@@ -1,0 +1,104 @@
+{
+  "version": "1.0.0",
+  "description": "Example Agentics deployment using Express.js",
+  "deployment": {
+    "id": "express-example",
+    "url": "http://localhost:3000",
+    "role": "primary",
+    "capabilities": ["neural", "temporal", "communications"]
+  },
+  "specifications": {
+    "agent_guidance": {
+      "path": "/.well-known/agentic-guidance.json",
+      "description": "Core interaction specifications",
+      "required": true
+    },
+    "api": {
+      "path": "/.well-known/openapi.json",
+      "description": "REST API documentation",
+      "required": true
+    },
+    "realtime": {
+      "path": "/.well-known/asyncapi.json",
+      "description": "WebSocket capabilities",
+      "required": true
+    },
+    "federation": {
+      "path": "/.well-known/peers.json",
+      "description": "Federation coordination",
+      "required": false
+    },
+    "health": {
+      "path": "/.well-known/health.json",
+      "description": "System monitoring",
+      "required": true
+    },
+    "models": {
+      "path": "/.well-known/models.json",
+      "description": "AI capabilities",
+      "required": false
+    }
+  },
+  "authentication": {
+    "type": "jwt",
+    "provider": "built-in",
+    "endpoints": {
+      "token": "/auth"
+    },
+    "documentation": "/docs/auth"
+  },
+  "communication": {
+    "rest": {
+      "base_url": "/api",
+      "documentation": "/.well-known/openapi.json"
+    },
+    "websocket": {
+      "url": "ws://localhost:3000/realtime",
+      "documentation": "/.well-known/asyncapi.json"
+    }
+  },
+  "features": {
+    "neural_interface": {
+      "enabled": true,
+      "description": "AI/ML processing",
+      "endpoint": "/api/brain"
+    },
+    "temporal_analysis": {
+      "enabled": true,
+      "description": "Time-series analysis",
+      "endpoint": "/api/temporal"
+    },
+    "communications": {
+      "enabled": true,
+      "description": "Real-time messaging",
+      "endpoint": "/api/chat"
+    }
+  },
+  "rate_limits": {
+    "default": {
+      "requests_per_hour": 1000,
+      "concurrent_connections": 5
+    },
+    "authenticated": {
+      "requests_per_hour": 5000,
+      "concurrent_connections": 20
+    }
+  },
+  "security": {
+    "encryption": {
+      "transport": "TLS_1.3",
+      "algorithms": ["ES256", "RS256"]
+    },
+    "cors": {
+      "enabled": true,
+      "origins": ["*"]
+    }
+  },
+  "metadata": {
+    "last_updated": "2025-02-14T00:32:55Z",
+    "version": "1.0.0",
+    "contact": {
+      "documentation": "/docs/contact"
+    }
+  }
+}
