@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-02-13",
+  "interactionGuidelines": {
+    "authentication": {
+      "required": true,
+      "method": "JWT",
+      "endpoint": "/auth"
+    },
+    "commandStructures": {
+      "hierarchical": {
+        "enabled": true,
+        "description": "Parent-child relationship with clear authority chain"
+      },
+      "mesh": {
+        "enabled": true,
+        "description": "Peer-to-peer interactions with consensus mechanisms"
+      },
+      "autonomous": {
+        "enabled": true,
+        "description": "Self-governing agent clusters with goal alignment"
+      }
+    },
+    "securityRequirements": {
+      "tlsVersion": "1.3",
+      "federationTrust": true,
+      "rateLimits": {
+        "apiRequests": 1000,
+        "period": "hour"
+      },
+      "quotas": {
+        "websocketConnections": 5,
+        "storage": "1GB",
+        "concurrentOperations": 100
+      }
+    },
+    "realTimeCapabilities": {
+      "websocket": {
+        "endpoint": "wss://agentics.org/realtime",
+        "protocols": ["json", "msgpack"]
+      },
+      "serverSentEvents": {
+        "endpoint": "/api/events"
+      },
+      "federation": {
+        "endpoint": "wss://agentics.org/federation"
+      }
+    }
+  }
+}

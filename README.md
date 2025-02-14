@@ -143,9 +143,13 @@ The specification recognizes that AI agents are becoming first-class citizens of
 A full example implementation is provided in this repository:
 
 - [`/robots.txt`](robots.txt) - Extended robots.txt with Agentic directives
-- [`/.well-known/agentics-manifest.json`](.well-known/agentics-manifest.json) - Core configuration
-- [`/.well-known/health.json`](.well-known/health.json) - System status and monitoring
-- [`/.well-known/peers.json`](.well-known/peers.json) - Federation configuration
+- [`/.well-known/agentics-manifest.json`](.well-known/agentics-manifest.json) - Complete system overview and entry points
+- [`/.well-known/agent-guide.md`](.well-known/agent-guide.md) - Detailed examples and best practices
+- [`/.well-known/agentic-guidance.json`](.well-known/agentic-guidance.json) - Core interaction specifications
+- [`/.well-known/openapi.json`](.well-known/openapi.json) - REST API documentation
+- [`/.well-known/asyncapi.json`](.well-known/asyncapi.json) - Real-time capabilities
+- [`/.well-known/peers.json`](.well-known/peers.json) - Distributed deployment coordination
+- [`/.well-known/health.json`](.well-known/health.json) - System health and monitoring
 - [`/.well-known/models.json`](.well-known/models.json) - AI model capabilities
 - [`/.well-known/auth-policies.json`](.well-known/auth-policies.json) - Security policies
 

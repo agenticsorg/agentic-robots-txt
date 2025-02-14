@@ -192,10 +192,10 @@ app.get('/api/health', verifyToken, async (req, res) => {
 
 // Create HTTP server
 const server = app.listen(PORT, () => {
-  const testUrl = `http://localhost:${PORT}/test.html`;
+  const testUrl = `http://localhost:${PORT}`;
   console.log('\n🚀 Server running on port', PORT);
-  console.log('\n📝 Test interface available at:');
-  console.log('\x1b[36m%s\x1b[0m', testUrl); // Cyan color
+  console.log('\n📝 Interface available at:');
+  console.log('\x1b[36m%s\x1b[0m', testUrl);
   console.log('\n🔍 Click the URL above to open in browser\n');
 });
 

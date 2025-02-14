@@ -16,6 +16,7 @@
     "ws": "^8.16.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.8",
     "nodemon": "^3.0.3"
   }
 }
