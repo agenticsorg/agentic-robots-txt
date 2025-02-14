@@ -1,0 +1,140 @@
+{
+  "policies": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-02-14T05:54:04Z",
+    
+    "roles": {
+      "agent": {
+        "description": "Standard AI agent access",
+        "capabilities": [
+          "neural.inference",
+          "temporal.read",
+          "communications.basic"
+        ],
+        "resources": {
+          "requestsPerMinute": 1000,
+          "storageQuota": "1Gi",
+          "computeUnits": 100
+        },
+        "permissions": {
+          "api": {
+            "read": ["/api/public/*"],
+            "write": ["/api/public/data/*"],
+            "execute": ["/api/neural/inference/*"]
+          },
+          "websocket": {
+            "subscribe": ["updates/*", "events/public/*"],
+            "publish": ["events/agents/*"]
+          }
+        }
+      },
+      "admin": {
+        "description": "Administrative access",
+        "capabilities": ["*"],
+        "resources": {
+          "requestsPerMinute": 5000,
+          "storageQuota": "100Gi",
+          "computeUnits": 1000
+        },
+        "permissions": {
+          "api": {
+            "read": ["/*"],
+            "write": ["/*"],
+            "execute": ["/*"]
+          },
+          "websocket": {
+            "subscribe": ["*"],
+            "publish": ["*"]
+          }
+        }
+      },
+      "service": {
+        "description": "Service-to-service communication",
+        "capabilities": [
+          "neural.*",
+          "temporal.*",
+          "communications.*",
+          "federation.sync"
+        ],
+        "resources": {
+          "requestsPerMinute": 3000,
+          "storageQuota": "10Gi",
+          "computeUnits": 500
+        },
+        "permissions": {
+          "api": {
+            "read": ["/api/*"],
+            "write": ["/api/service/*"],
+            "execute": ["/api/neural/*", "/api/temporal/*"]
+          },
+          "websocket": {
+            "subscribe": ["services/*", "events/*"],
+            "publish": ["services/*"]
+          }
+        }
+      }
+    },
+
+    "ratelimiting": {
+      "global": {
+        "requestsPerSecond": 10000,
+        "burstSize": 1000
+      },
+      "perIp": {
+        "requestsPerMinute": 100,
+        "burstSize": 20
+      },
+      "perToken": {
+        "requestsPerMinute": 1000,
+        "burstSize": 100
+      }
+    },
+
+    "security": {
+      "jwt": {
+        "issuer": "auth.example.com",
+        "audience": "api.example.com",
+        "expiryTime": 3600,
+        "refreshAllowed": true,
+        "algorithms": ["RS256"]
+      },
+      "cors": {
+        "enabled": true,
+        "allowedOrigins": [
+          "https://example.com",
+          "https://*.example.com"
+        ],
+        "allowedMethods": [
+          "GET",
+          "POST",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      "headers": {
+        "required": [
+          "X-Request-ID",
+          "Authorization"
+        ],
+        "allowed": [
+          "X-API-Key",
+          "X-Client-Version"
+        ]
+      }
+    },
+
+    "audit": {
+      "enabled": true,
+      "events": [
+        "authentication",
+        "authorization",
+        "resource-access",
+        "configuration-change"
+      ],
+      "retention": {
+        "duration": "90d",
+        "storageQuota": "50Gi"
+      }
+    }
+  }
+}

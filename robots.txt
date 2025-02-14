@@ -1,0 +1,77 @@
+# Agentic Robots.txt - Autonomous Agent Guidance System
+# Version: 1.0.0
+# Last Updated: 2025-02-13
+
+# Quick Start Guide for Autonomous Agents:
+# 1. Read the manifest at /.well-known/agentics-manifest.json for complete capabilities
+# 2. See /.well-known/agent-guide.md for detailed examples and best practices
+# 3. Authenticate via /auth endpoint using JWT
+# 4. Access real-time updates via WebSocket
+# 5. Join federation network if distributed operations needed
+
+# Structured Specifications:
+# - Main Manifest:     /.well-known/agentics-manifest.json    # Complete system overview and entry points
+# - Agent Guide:       /.well-known/agent-guide.md           # Detailed examples and best practices
+# - Agent Guidance:    /.well-known/agentic-guidance.json     # Core interaction specifications
+# - API Docs:          /.well-known/openapi.json              # REST API documentation
+# - WebSocket:         /.well-known/asyncapi.json             # Real-time capabilities
+# - Federation:        /.well-known/peers.json                # Distributed deployment coordination
+# - Health Status:     /.well-known/health.json              # System health and monitoring
+# - Model Specs:       /.well-known/models.json              # AI model capabilities
+
+# Command & Control Structures Available:
+# - Hierarchical: Parent-child relationship with clear authority chain
+# - Mesh: Peer-to-peer interactions with consensus mechanisms
+# - Autonomous: Self-governing agent clusters with goal alignment
+
+# Security Requirements:
+# - Authentication required for all API access
+# - TLS 1.3 required for all connections
+# - Federation requires trust verification
+# - Rate limits and quotas enforced
+
+# Standard Crawler Directives
+User-agent: *
+Allow: /
+Disallow: /api/private/    # Private API endpoints
+Disallow: /admin/          # Administrative interfaces
+Disallow: /internal/       # Internal systems
+
+# Protected API Endpoints (Require Authentication)
+Disallow: /api/brain/      # Neural interface operations
+Disallow: /api/chat/       # Real-time communication
+Disallow: /api/speak/      # Voice interaction
+
+# Real-time Capabilities:
+# - WebSocket: wss://agentics.org/realtime
+# - Server-Sent Events: /api/events
+# - Federation Socket: wss://agentics.org/federation
+
+# Available Models:
+# - gpt-4o-mini: Optimized language model
+# - llama-3: Advanced multilingual model
+# - claude-3: Multimodal reasoning system
+
+# Federation Capabilities:
+# - Cross-deployment communication
+# - Distributed task execution
+# - Resource sharing
+# - State synchronization
+
+# Resource Quotas:
+# - API: 1000 requests/hour
+# - WebSocket: 5 concurrent connections
+# - Storage: 1GB per deployment
+# - Compute: 100 concurrent operations
+
+# Documentation & Support:
+# - Agent Guide: /.well-known/agent-guide.md
+# - API Docs: /docs/api
+# - Federation Guide: /docs/federation
+# - Security Docs: /docs/security
+# - Support: /support
+
+# For detailed specifications and capabilities, see:
+# https://agentics.org/.well-known/agentics-manifest.json
+
+Sitemap: https://agentics.org/sitemap.xml

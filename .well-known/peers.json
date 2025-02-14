@@ -1,0 +1,96 @@
+{
+  "federation": {
+    "network": "example-network",
+    "version": "1.0.0",
+    "lastUpdated": "2024-02-14T05:53:20Z",
+    "discoveryMethods": ["manual", "dns-txt", "distributed-hash-table"],
+    
+    "self": {
+      "id": "node-alpha-123",
+      "url": "https://example.com",
+      "capabilities": ["neural", "temporal", "communications"],
+      "resources": {
+        "compute": "high",
+        "storage": "medium",
+        "bandwidth": "high"
+      }
+    },
+
+    "peers": [
+      {
+        "id": "node-beta-456",
+        "url": "https://peer1.example.com",
+        "status": "active",
+        "lastSeen": "2024-02-14T05:52:20Z",
+        "capabilities": ["neural", "communications"],
+        "trust": {
+          "level": "verified",
+          "score": 0.95,
+          "verifiedBy": ["trust.example.com"]
+        },
+        "resources": {
+          "compute": "medium",
+          "storage": "high",
+          "bandwidth": "medium"
+        }
+      },
+      {
+        "id": "node-gamma-789",
+        "url": "https://peer2.example.com",
+        "status": "active",
+        "lastSeen": "2024-02-14T05:51:20Z",
+        "capabilities": ["temporal", "communications"],
+        "trust": {
+          "level": "verified",
+          "score": 0.88,
+          "verifiedBy": ["trust.example.com"]
+        },
+        "resources": {
+          "compute": "low",
+          "storage": "medium",
+          "bandwidth": "high"
+        }
+      }
+    ],
+
+    "discovery": {
+      "interval": 300,
+      "methods": {
+        "dns-txt": {
+          "domain": "federation.example.com",
+          "ttl": 3600
+        },
+        "dht": {
+          "protocol": "kademlia",
+          "bootstrap": [
+            "dht.example.com:6881",
+            "dht-backup.example.com:6881"
+          ]
+        }
+      }
+    },
+
+    "sync": {
+      "protocol": "crdt",
+      "interval": 60,
+      "priorities": {
+        "state": "high",
+        "metrics": "medium",
+        "logs": "low"
+      }
+    },
+
+    "loadBalancing": {
+      "enabled": true,
+      "strategy": "resource-aware",
+      "metrics": ["latency", "load", "availability"]
+    },
+
+    "security": {
+      "minTrustScore": 0.8,
+      "requireVerification": true,
+      "allowedNetworks": ["main-net", "test-net"],
+      "blacklist": []
+    }
+  }
+}

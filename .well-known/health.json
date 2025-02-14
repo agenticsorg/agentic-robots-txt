@@ -1,0 +1,91 @@
+{
+  "status": "healthy",
+  "timestamp": "2024-02-14T05:52:57Z",
+  "version": "1.0.0",
+  
+  "components": {
+    "api": {
+      "status": "healthy",
+      "latency": 45,
+      "uptime": 99.99,
+      "requests": {
+        "total": 15234,
+        "success": 15200,
+        "failed": 34
+      }
+    },
+    "neural": {
+      "status": "healthy",
+      "models": {
+        "gpt-4": {
+          "status": "active",
+          "load": 0.75
+        },
+        "stable-diffusion": {
+          "status": "active",
+          "load": 0.45
+        }
+      }
+    },
+    "websocket": {
+      "status": "healthy",
+      "connections": {
+        "active": 156,
+        "total": 1502
+      },
+      "messages": {
+        "sent": 45231,
+        "received": 42123
+      }
+    },
+    "federation": {
+      "status": "healthy",
+      "peers": {
+        "active": 5,
+        "total": 8
+      },
+      "sync": {
+        "lastSuccess": "2024-02-14T05:50:57Z",
+        "status": "in-sync"
+      }
+    }
+  },
+
+  "resources": {
+    "cpu": {
+      "usage": 45.5,
+      "available": 85.5
+    },
+    "memory": {
+      "usage": "4.2Gi",
+      "available": "3.8Gi",
+      "total": "8Gi"
+    },
+    "storage": {
+      "usage": "45Gi",
+      "available": "55Gi",
+      "total": "100Gi"
+    }
+  },
+
+  "metrics": {
+    "requestRate": 152.3,
+    "errorRate": 0.22,
+    "avgLatency": 45.2,
+    "p95Latency": 95.5,
+    "p99Latency": 150.2
+  },
+
+  "maintenance": {
+    "scheduled": false,
+    "nextWindow": null
+  },
+
+  "alerts": [
+    {
+      "level": "info",
+      "message": "Federation peer sync completed",
+      "timestamp": "2024-02-14T05:50:57Z"
+    }
+  ]
+}

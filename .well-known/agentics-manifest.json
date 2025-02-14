@@ -1,0 +1,118 @@
+{
+  "version": "1.0.0",
+  "name": "Example Agentic Application",
+  "description": "Demonstration of full Agentic_Robots.txt specification implementation",
+  
+  "capabilities": {
+    "neural": {
+      "enabled": true,
+      "models": ["gpt-4", "stable-diffusion"],
+      "endpoints": {
+        "inference": "/api/neural/inference",
+        "training": "/api/neural/training"
+      },
+      "config": "/.well-known/models.json"
+    },
+    "temporal": {
+      "enabled": true,
+      "features": ["prediction", "anomaly-detection", "pattern-recognition"],
+      "endpoints": {
+        "timeseries": "/api/temporal/series",
+        "analysis": "/api/temporal/analyze"
+      }
+    },
+    "communications": {
+      "enabled": true,
+      "channels": {
+        "websocket": {
+          "endpoint": "wss://example.com/ws",
+          "protocols": ["v1", "v2"]
+        },
+        "sse": {
+          "endpoint": "/api/events",
+          "topics": ["updates", "alerts"]
+        },
+        "rest": {
+          "endpoint": "/api/v1",
+          "documentation": "/api/docs/openapi.json"
+        }
+      }
+    }
+  },
+
+  "federation": {
+    "enabled": true,
+    "discovery": {
+      "endpoint": "/.well-known/peers.json",
+      "interval": 300,
+      "protocols": ["manual", "dns-txt", "distributed-hash-table"]
+    },
+    "trust": {
+      "verification": "/.well-known/trust.json",
+      "authorities": ["https://trust.example.com"]
+    }
+  },
+
+  "security": {
+    "authentication": {
+      "type": "jwt",
+      "endpoint": "/auth/token",
+      "publicKey": "/.well-known/jwt-key.json"
+    },
+    "authorization": {
+      "type": "rbac",
+      "roles": ["agent", "admin", "service"],
+      "policies": "/.well-known/auth-policies.json"
+    },
+    "ratelimiting": {
+      "enabled": true,
+      "default": {
+        "requests": 1000,
+        "period": 3600
+      }
+    }
+  },
+
+  "monitoring": {
+    "health": {
+      "endpoint": "/.well-known/health.json",
+      "interval": 60
+    },
+    "metrics": {
+      "endpoint": "/metrics",
+      "format": "prometheus"
+    },
+    "logging": {
+      "level": "info",
+      "audit": true
+    }
+  },
+
+  "api": {
+    "versions": ["v1", "v2-beta"],
+    "default": "v1",
+    "documentation": {
+      "openapi": "/api/docs/openapi.json",
+      "asyncapi": "/api/docs/asyncapi.json"
+    },
+    "endpoints": {
+      "base": "/api/v1",
+      "websocket": "wss://example.com/ws",
+      "sse": "/api/events"
+    }
+  },
+
+  "resources": {
+    "compute": {
+      "limits": {
+        "cpu": "4",
+        "memory": "8Gi",
+        "gpu": "1"
+      }
+    },
+    "storage": {
+      "quota": "100Gi",
+      "types": ["persistent", "temporary"]
+    }
+  }
+}

@@ -138,11 +138,18 @@ The specification recognizes that AI agents are becoming first-class citizens of
    - Protect sensitive data
    - Ensure compliance
 
-This approach creates a more collaborative web ecosystem where human users and AI agents can coexist and interact safely and efficiently.
+### Complete Implementation Example
 
-### Implementation Examples
+A full example implementation is provided in this repository:
 
-The specification includes reference implementations:
+- [`/robots.txt`](robots.txt) - Extended robots.txt with Agentic directives
+- [`/.well-known/agentics-manifest.json`](.well-known/agentics-manifest.json) - Core configuration
+- [`/.well-known/health.json`](.well-known/health.json) - System status and monitoring
+- [`/.well-known/peers.json`](.well-known/peers.json) - Federation configuration
+- [`/.well-known/models.json`](.well-known/models.json) - AI model capabilities
+- [`/.well-known/auth-policies.json`](.well-known/auth-policies.json) - Security policies
+
+Additionally, reference implementations are provided:
 
 1. **Express.js Example** (`/example/express/`)
    - Minimal Node.js implementation
@@ -156,8 +163,6 @@ The specification includes reference implementations:
    - API endpoint management
    - Security controls
    - Federation support
-
-These implementations demonstrate how to integrate Agentic_Robots.txt into both new and existing web applications while maintaining backward compatibility with traditional web crawlers.
 
 ## System Architecture
 
